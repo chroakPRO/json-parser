@@ -1,7 +1,7 @@
 <?php 
 declare(strict_types=1)
 
-class AccountStruct {
+public class AccountStruct {
 
     public string $id_main;
     public string $id_hash;
@@ -26,10 +26,19 @@ class AccountStruct {
 
 class Parser { 
 
-    public function __construct(string $json_struct){
+    public function __construct(
+        string $json_struct,         
+        string $id_main, 
+        string $id_hash, 
+        string $username, 
+        string $password, 
+        string $name)){
 
-        $this->json_struct = $json_struct;
-
+            $this->id_main = $id_main;
+            $this->id_hash = $id_hash;
+            $this->username = $username;
+            $this->password = $password;
+            $this->name = $name;
     }
 
     public function crawler(){
@@ -37,6 +46,10 @@ class Parser {
         $json_decoded = json_decode($this->json_struct);
         for(int $i = 0; $i < count($this->json_struct["items"]); $i++){
             
+            $this->id_main = $i;
+            $this->id_hash = hash("sha256", $i * 48)
+            $this->username = $
+
         }
 
     }
