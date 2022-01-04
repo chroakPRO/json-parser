@@ -1,45 +1,39 @@
 <?php 
 declare(strict_types=1)
 
-public class AccountStruct {
 
-    public string $id_main;
-    public string $id_hash;
-    public string $username;
-    public string $password;
-    public string $name;
 
-    public function __construct(
-        string $id_main, 
-        string $id_hash, 
-        string $username, 
-        string $password, 
-        string $name) 
+
+class DB extends PDO
+{
+  //Ansluter till databasen. 
+  public function __construct($dbname = "")
+  {
+    try 
     {
-        $this->id_main = $id_main;
-        $this->id_hash = $id_hash;
-        $this->username = $username;
-        $this->password = $password;
-        $this->name = $name;
+        parent::__construct("mysql:host=localhost;dbname=$dbname;charset=utf8","root", "");
+    }   
+    catch (Exception $e) 
+    {
+        echo "<pre>" . print_r($e, 1) . "</pre>";
     }
+  }
 }
+
+
+
+
+
 
 class Parser { 
 
-    public function __construct(
-        string $json_struct,         
-        string $id_main, 
-        string $id_hash, 
-        string $username, 
-        string $password, 
-        string $name)){
-
-            $this->id_main = $id_main;
-            $this->id_hash = $id_hash;
-            $this->username = $username;
-            $this->password = $password;
-            $this->name = $name;
+    public function __construct(string $json_struct){
+        
+        $this->json_struct =  $json_struct;
+    $this->linked_list = new SplDoublyLinkedList(); 
+        
     }
+    
 
     public function crawler(){
         
