@@ -8,7 +8,6 @@ class Parser {
         $this->db = new \Database\DB;
         $this->json_struct =  $json_struct;
         $this->linked_list = new \SplDoublyLinkedList();
-        return 12;
     }
     
     
