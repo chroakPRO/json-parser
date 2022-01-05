@@ -49,19 +49,14 @@ def list_dups(struct_list):
         elif x2 > x1 and p2 > p1:
             dupes.append(sus_dupes[j][0].id_main)
 
-    return dupes
-            
-                    
-                    
-        
+    return dupes 
              
 def main():
     v1 = "default"
     j1 = []
 
     
-    # for loop that counts to 100
-    # for loop that counts to 100
+    
 
     with open('bitwarden_export.json') as f:
         print(f)
