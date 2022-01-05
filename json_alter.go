@@ -50,7 +50,7 @@ func main() {
 
 
 	for i := 0; i < len(heads.Heads); i++ {
-		fmt.Printf("Employee Name: " + heads.Heads[i].Login.Password)
+		fmt.Pr	intf("Employee Name: " + heads.Heads[i].Login.Password)
 		//fmt.Println("Employee Gender: " + employees.Employees[i].Gender)
 		//fmt.Println("Employee Age: " + strconv.Itoa(employees.Employees[i].Age))
 	}
