@@ -25,6 +25,8 @@ def list_dups(struct_list):
     
     listele = len(struct_list) - 1
     
+    
+
     for jndex, obj in enumerate(struct_list):
         if jndex < listele:
             for obj2 in struct_list[int(jndex + 1):]: 
