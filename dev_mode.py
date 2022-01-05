@@ -1,7 +1,6 @@
 import json
 import sys
-from typing import Dict, List
-from typing import NewType
+from typing import Dict, List, NewType
 
 pass_ob = []
 
@@ -98,7 +97,6 @@ def main():
             json.dump(data2, f2)
 
             
-            
-            
+            FSDF
 if __name__  == "__main__":
     main()
