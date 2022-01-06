@@ -37,6 +37,7 @@
      * @return [string]
      */
     public function __toString() {
+
         // String: Can be used to return values as strings. Without converting
         return "struct-object blueprint. Nothing more to see here....";
     }
@@ -46,6 +47,7 @@
      * @return [string]
      */
     public function _invoke() {
+        
         return 'Invoke is not allowed.';
     }
 

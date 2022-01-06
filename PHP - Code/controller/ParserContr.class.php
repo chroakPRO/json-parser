@@ -63,17 +63,25 @@ class Parser {
      */
     function duplicateNumber(array $arr): array {
         
+        // check if array contains duplicates
+        $dupes = new \SplDoublyLinkedList();
+        
+        // for: compare every value with eachother. O(n^2)
         for($i = 0; $i < count($arr); $i++){
-            for($j = 0; $j < $count($arr); $j++){
-                if (strpos($arr[i], $arr[$j + 1]) === false) {
-                    
+            for($j = 0; $j < count($arr); $j++){
+
+
+                // SHA1 Hash
+                $sha1sum = [hash("sha1", $arr[$i]["name"]), hash("sha1", $arr[$j]["name"])];
                 
+                // Compare checksum: string string
+                if ($sha1sum[0] == $sha1sum[1]) {
+                    $dupes->push($arr[$i]);
                 }
             }
         }
         
-        
-
+    
         return item;
     }
 }
