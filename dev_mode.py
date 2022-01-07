@@ -6,10 +6,11 @@ pass_ob = []
 
 
 class PassVerify:
-    
+
     def __init__(self, id_main: str, id_hash: str, username: str, password: str, name: str) -> object:
 
-        self.id_main: str= id_main
+
+        self.id_main: str = id_main
         self.id_hash: str = id_hash
         self.user: str = username
         self.passw: str = password
@@ -17,43 +18,56 @@ class PassVerify:
         self.ref: List[str] = [self.user, self.name, self.passw]
 
             
-def list_dups(struct_list):
-    
-    sus_dupes = []
-    dupes = []
-    
-    listele = len(struct_list) - 1
-    
-    
+    def list_dups(struct_list) -> List[str]:
+        """[summary]
 
-    for jndex, obj in enumerate(struct_list):
-        if jndex < listele:
-            for obj2 in struct_list[int(jndex + 1):]: 
-                #print(obj.id_main[1])
-                if str(obj.ref[0]).lower() in str(obj2.ref[0]).lower():
-                    #print("first")
-                    if str(obj.ref[1]) in str(obj2.ref[1]):
-                        #rint("secound")
-                        most = [obj, obj2]
-                        sus_dupes.append(most)
-                        break
-    
-    for j, i in enumerate(sus_dupes):
-        x1 = sys.getsizeof(sus_dupes[j][0])
-        x2 = sys.getsizeof(sus_dupes[j][1])
-        p1 = sus_dupes[j][0].passw
-        p2 = sus_dupes[j][1].passw
+        Args:
+            struct_list ([List[Tuple[str]]]): [description]
 
-    
+        Returns:
+            List[str]: [list of duplicates]
+        """    
+        sus_dupes = []
+        dupes = []
+        
+        listele = len(struct_list) - 1
+        
+        for jndex, obj in enumerate(struct_list):
+            if jndex < listele:
+                for obj2 in struct_list[int(jndex + 1):]: 
+                    #print(obj.id_main[1])
+                    if str(obj.ref[0]).lower() in str(obj2.ref[0]).lower():
+                        #print("first")
+                        if str(obj.ref[1]) in str(obj2.ref[1]):
+                            #rint("secound")
+                            most = [obj, obj2]
+                            sus_dupes.append(most)
+                            break
+        
+        for j, i in enumerate(sus_dupes):
+            x1 = sys.getsizeof(sus_dupes[j][0])
+            x2 = sys.getsizeof(sus_dupes[j][1])
+            p1 = sus_dupes[j][0].passw
+            p2 = sus_dupes[j][1].passw
 
-        if x1 >= x2 or p1 >= p2:
-            dupes.append(sus_dupes[j][1].id_main)
-        elif x2 > x1 and p2 > p1:
-            dupes.append(sus_dupes[j][0].id_main)
+        
 
-    return dupes 
-             
+            if x1 >= x2 or p1 >= p2:
+                dupes.append(sus_dupes[j][1].id_main)
+            elif x2 > x1 and p2 > p1:
+                dupes.append(sus_dupes[j][0].id_main)
+
+        return dupes 
+                
 def main():
+    """[This is the entry-point and order execution]
+
+    Args:
+        none ([type]): [description]
+
+    Returns:
+        none [description]
+    """ 
     v1 = "default"
     j1 = []
 

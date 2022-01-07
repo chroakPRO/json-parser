@@ -3,17 +3,19 @@ Namespace Controllers;
 
 class Parser { 
     
-    // PRIVATE DATA
+    //* PRIVATE DATA
     private object $json_decoded;
 
-    // PUBLIC DATA
+    //! PUBLIC DATA
     public object $test;
     
-    /**
+    /** ['Construct']
+     * * First method after object creation
      * @param string $loaded_file
      */
     public function __construct(string $loaded_file){
 
+        //? Creates database & data-structures.
         $this->db = new \Database\DB;
         $this->json_struct =  $loaded_file;
         $this->linked_list = new \SplDoublyLinkedList();
@@ -21,8 +23,8 @@ class Parser {
     
     
     
-    /**
-     * @global ['PHP Object Generator' - (account details)]
+    /** ['Account Object Generator']
+     * * JSON struct serializer
      * 
      * @param string $json_struct 
      * @return \SplDoublyLinkedList
@@ -54,33 +56,39 @@ class Parser {
        
     } 
 
-    /**
-     * @global ['returns list with duplicates']
+    /** ['Dupes']
+     * * Bitwarden Login - duplicates
      * 
      * @param array $arr
-     * // returns object
+     * 
      * @return array $seralizedObj
      */
     function duplicateNumber(array $arr): array {
         
         // check if array contains duplicates
         $dupes = new \SplDoublyLinkedList();
+
+        $count = [];
         
         // for: compare every value with eachother. O(n^2)
         for($i = 0; $i < count($arr); $i++){
-            for($j = 0; $j < count($arr); $j++){
+            // if: if index value is in array 
+            if(in_array($i, $count) === false){
+                for($j = $i + 1; $j < count($arr); $j++){
+                    if(in_array($i, $count) === false){
 
-
-                // SHA1 Hash
-                $sha1sum = [hash("sha1", $arr[$i]["name"]), hash("sha1", $arr[$j]["name"])];
-                
-                // Compare checksum: string string
-                if ($sha1sum[0] == $sha1sum[1]) {
-                    $dupes->push($arr[$i]);
+                    // SHA1 Hash
+                    $sha1sum = [hash("sha1", $arr[$i]["name"]), hash("sha1", $arr[$j]["name"])];
+                    
+                    // Compare checksum: string stringx
+                    if ($sha1sum[0] == $sha1sum[1]) {
+                        $dupes->push($arr[$i]);
+                        $count[$i] = $i;
+                        break;
+                    }
                 }
             }
         }
-        
     
         return item;
     }
