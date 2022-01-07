@@ -75,7 +75,8 @@
      * * ['function call: unserialize()']
      * 
      * @param array $data
-     * ? Info: For testing purposes.
+     * 
+     * ?Info: For testing purposes.
      * @return void
      */
     public function __unserialize(array $data): void
