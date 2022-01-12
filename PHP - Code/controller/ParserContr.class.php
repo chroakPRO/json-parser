@@ -85,9 +85,18 @@ class Parser {
         return $dupes;
     }
 
-    public function jsonGenerator(\SplDoublyLinkedList $arr): array{
-        return $arr
-    }
+    /**
+     ** Generate the new JSON without duplicates.
+     * @param \SplDoublyLinkedList $arr //? AccountDetail Object
+     * 
+     * @return array
+     */
+    public function jsonGen(\SplDoublyLinkedList $arr): array{
+        $jsonArr = [];
+        return $jsonArr;
+    }    
+
+
 }
 
 
