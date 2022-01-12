@@ -60,7 +60,7 @@ class Parser {
      * 
      * @return \SplDoublyLinkedList $seralizedObj
      */   
-    public function Dupes(\SplDoublyLinkedList $arr): \SplDoublyLinkedList {
+    public function Dupes(\SplDoublyLinkedList $arr): array {
 
         // check if array contains duplicates
         $dupes = new \SplDoublyLinkedList();
@@ -82,7 +82,7 @@ class Parser {
             }        
         }  
         // * Returns an array with AccountDetail Objects.
-        return $dupes;
+        return array($dupes, $seralizedObj);
     }
 
     /**
@@ -91,12 +91,22 @@ class Parser {
      * 
      * @return array
      */
-    public function jsonGen(\SplDoublyLinkedList $arr): array{
+    public function jsonGen(\SplDoublyLinkedList $arr, array $seralized_obj): array{
         $jsonArr = [];
+
+        for($i = 0; $i < count($arr); $i++){
+            if(in_array($i, $seralized_obj) === false) { 
+                $jsonArr["items"][$i] = array($arr[$i]["id_main"], $arr[$i]["id_hash"],
+                                              $arr[$i]["username"], $arr[$i]["password"],
+                                              $arr[$i]["name"], $arr[$i]["ref"]);
+            }
+        }
         return $jsonArr;
-    }    
-
-
+    }
+    
+    public function fileGen(string $filename, array $arr){
+        return json_encode($arr);
+    }
 }
 
 
@@ -112,5 +122,14 @@ $test = new Parser($file);
  * @return \SplDoublyLinkedList - //? AccountDetail object.
  */
 $obj_gen = $test->objGenerator($test->json_struct);
-$dupes = $test->Dupes($obj_gen);
+$arrDupes = $test->Dupes($obj_gen);
+
+$dupes_obj = $arrDupes[0];
+$seralized_obj = $arrDupes[1];
+
+$json_struct = $test->jsonGen($obj_gen, $seralized_obj);
+
+$print_value = $test->fileGen("Hello", $json_struct);
+echo $print_value;
+
 
