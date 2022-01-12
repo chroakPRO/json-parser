@@ -58,16 +58,10 @@ class Parser {
      * 
      * @param array $arr
      * 
-<<<<<<< HEAD
      * @return \SplDoublyLinkedList $seralizedObj
-     */
-    public function Dupes(array $arr): \SplDoublyLinkedList {
-=======
-     * @return array $serializedObj
-     */
-    function duplicateNumber(\SplDoublyLinkedList $arr): \SplDoublyLinkedList {
->>>>>>> 6e57d37cfaa9a74d04377bd95ff31bfb333167e9
-        
+     */   
+    public function Dupes(\SplDoublyLinkedList $arr): \SplDoublyLinkedList {
+
         // check if array contains duplicates
         $dupes = new \SplDoublyLinkedList();
 
@@ -81,21 +75,6 @@ class Parser {
                     // Compare checksum: string stringx
                     if ($sha1sum[0] == $sha1sum[1]) {
                         $dupes->push($arr[$i]);
-<<<<<<< HEAD
-                        $count[$i] = $i;
-                        
-                    }
-                }
-            }
-        }
-    
-        return $dupes;
-    }
-}
-}
-
-
-=======
                         $seralizedObj[$i] = $i;
                         break;
                     }
@@ -105,15 +84,24 @@ class Parser {
         // * Returns an array with AccountDetail Objects.
         return $dupes;
     }
+
+    public function jsonGenerator(\SplDoublyLinkedList $arr): array{
+        return $arr
+    }
 }
+
+
 
 
 $file = file_get_contents("bitwarden_export.json");
 $test = new Parser($file);
-/*
-* objGenerator returns a SplDoublyLinkedList.
-* 1 line contains 1 object. Values are seperated by ###
-* 
-*/
-$test = $test->objGenerator($test->json_struct);
->>>>>>> 6e57d37cfaa9a74d04377bd95ff31bfb333167e9
+
+/** ['Account Object Generator']
+ * * JSON struct serializer
+ * 
+ * @param string $json_struct - //? return value from file_gets_contents()
+ * @return \SplDoublyLinkedList - //? AccountDetail object.
+ */
+$obj_gen = $test->objGenerator($test->json_struct);
+$dupes = $test->Dupes($obj_gen);
+
