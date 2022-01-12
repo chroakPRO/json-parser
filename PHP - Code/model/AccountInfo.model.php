@@ -16,7 +16,7 @@
     public array $refrence;
 
     /** 
-     * @global ['Constructor'] //! RUNS FIRST
+     ** ['Constructor'] //! RUNS FIRST
      */
     public function __construct() {
         

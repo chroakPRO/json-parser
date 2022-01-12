@@ -61,9 +61,9 @@ class Parser {
      * 
      * @param array $arr
      * 
-     * @return array $seralizedObj
+     * @return \SplDoublyLinkedList $seralizedObj
      */
-    function duplicateNumber(array $arr): array {
+    public function Dupes(array $arr): \SplDoublyLinkedList {
         
         // check if array contains duplicates
         $dupes = new \SplDoublyLinkedList();
@@ -84,13 +84,15 @@ class Parser {
                     if ($sha1sum[0] == $sha1sum[1]) {
                         $dupes->push($arr[$i]);
                         $count[$i] = $i;
-                        break;
+                        
                     }
                 }
             }
         }
     
-        return item;
+        return $dupes;
     }
 }
-?>
+}
+
+
