@@ -11,7 +11,8 @@ class Parser {
     
     /** ['Construct']
      * * First method after object creation
-     * @param string $loaded_file
+     * *
+     * @param string $loaded_file //? file_get_content()
      */
     public function __construct(string $loaded_file){
 
@@ -26,32 +27,28 @@ class Parser {
     /** ['Account Object Generator']
      * * JSON struct serializer
      * 
-     * @param string $json_struct 
-     * @return \SplDoublyLinkedList
+     * @param string $json_struct - //? return value from file_gets_contents()
+     * @return \SplDoublyLinkedList - //? AccountDetail object.
      */
     public function objGenerator(string $json_struct): \SplDoublyLinkedList {
         
-        // 
+        $list_object = new \SplDoublyLinkedList();
+
+        //
         $json_decoded = json_decode($json_struct);
         for($i = 0; $i < count($this->json_decoded["items"]); $i++){
             
-            $this->id_main = $i;
-            $this->id_hash = $json_decoded["items"][$i]["id"];
-            $this->username = $json_decoded["items"][$i]["login"]["username"];
-            $this->password = $json_decoded["items"][$i]["login"]["password"];
-            $this->name = $json_decoded["items"][$i]["name"];
+            $struct = new \Model\AccountDetail();
+            $struct->id_main = $i;
+            $struct->id_hash = $json_decoded["items"][$i]["id"];
+            $struct->username = $json_decoded["items"][$i]["login"]["username"];
+            $struct->password = $json_decoded["items"][$i]["login"]["password"];
+            $struct->name = $json_decoded["items"][$i]["name"];
             
-            $list_object = new \SplDoublyLinkedList;
-            $str_object = "$this->id_main## 
-                            $this->id_hash##
-                            $this->username##
-                            $this->password##
-                            $this->name";
+            $list_object->push($struct);
+            unset($struct);
 
-            $list_object->push($str_object);
-            
         }
-
         return $list_object;
        
     } 
@@ -61,36 +58,40 @@ class Parser {
      * 
      * @param array $arr
      * 
-     * @return array $seralizedObj
+     * @return array $serializedObj
      */
-    function duplicateNumber(array $arr): array {
+    function duplicateNumber(\SplDoublyLinkedList $arr): \SplDoublyLinkedList {
         
         // check if array contains duplicates
         $dupes = new \SplDoublyLinkedList();
 
-        $count = [];
-        
-        // for: compare every value with eachother. O(n^2)
+        $seralizedObj = [];
         for($i = 0; $i < count($arr); $i++){
-            // if: if index value is in array 
-            if(in_array($i, $count) === false){
-                for($j = $i + 1; $j < count($arr); $j++){
-                    if(in_array($i, $count) === false){
-
+            //* Checks if index is already dupe. efficency 
+            if(in_array($i, $seralizedObj) !== false ){
+                for($j = 1; $j < count($arr); $j++){
                     // SHA1 Hash
                     $sha1sum = [hash("sha1", $arr[$i]["name"]), hash("sha1", $arr[$j]["name"])];
-                    
                     // Compare checksum: string stringx
                     if ($sha1sum[0] == $sha1sum[1]) {
                         $dupes->push($arr[$i]);
-                        $count[$i] = $i;
+                        $seralizedObj[$i] = $i;
                         break;
                     }
                 }
-            }
-        }
-    
-        return item;
+            }        
+        }  
+        // * Returns an array with AccountDetail Objects.
+        return $dupes;
     }
 }
-?>
+
+
+$file = file_get_contents("bitwarden_export.json");
+$test = new Parser($file);
+/*
+* objGenerator returns a SplDoublyLinkedList.
+* 1 line contains 1 object. Values are seperated by ###
+* 
+*/
+$test = $test->objGenerator($test->json_struct);
