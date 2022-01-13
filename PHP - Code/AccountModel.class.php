@@ -1,5 +1,4 @@
 <?php
-Namespace Model;
 /**
  *? [Description]
  ** Every JSON object will be parsed and placed into an AccountDetail object
