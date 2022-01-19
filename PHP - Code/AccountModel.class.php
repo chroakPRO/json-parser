@@ -20,30 +20,30 @@
      */
     public function __construct() {
         
-        //* Default values. 
+        //? Default values. 
         $this->id_main = 0;
         $this->id_hash = 0;
         $this->username = "none";
         $this->password = "none";
         $this->name = "none";
 
-        //* Array: Hold all object values. (not sorted)
+        //? Array: Hold all object values. (not sorted)
         $this->reference = array($this->username, $this->id_hash,
          $this->username, $this->password, $this->name);
     }
 
     /**
-     * * ['When object gets printed.']
+     * ? ['When object gets printed.']
      * @return [string]
      */
     public function __toString() {
 
-        //* String: Can be used to return values as strings. Without converting
+        //? String: Can be used to return values as strings. Without converting
         return "struct-object blueprint. Nothing more to see here....";
     }
 
     /**
-     * * Invoke method
+     * ? Invoke method
      * @return [string]
      */
     public function _invoke() {
@@ -52,7 +52,7 @@
     }
 
     /**
-     * * ['function call:: seralize()']
+     * ? ['function call:: seralize()']
      * @return array
      * ? Info: This is for testing purposes.
      */
@@ -88,6 +88,7 @@
         $this->password = $data['password'];
         $this->name = $data['name'];
         $this->reference = $data['reference'];
+
     }
 }
 ?>
